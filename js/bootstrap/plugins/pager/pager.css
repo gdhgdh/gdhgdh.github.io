@@ -1,0 +1,12 @@
+﻿        
+/*-引用说明：该样式请引用在 <link href="~/WebPlugins/Bootstrap/css/bootstrap.min.css" rel="stylesheet" /> 之后----------------------*/
+/*---------------分页Page的css----------------------*/
+.dvPager {width: 100%;}
+.dvPager .dvPagerBtnList {margin-left: auto;margin-right: auto;text-align: center;}
+.dvPager .dvPagerBtnList ul {margin-top: 12px;margin-bottom: 12px;}
+.dvPager .dvPagerBtnList a.aBtn {font-weight: 700;color: #3f240e; }
+.dvPager .dvPagerBtnList a.enabled { cursor: pointer; }
+.dvPager .dvPagerBtnList a.enabled:hover {background: #633c1c;border-color: #633c1c;color: white; }
+.dvPager .dvPagerBtnList a.omitBtn {border-top: none;border-bottom: none;border-right: none;font-weight: 700;color: #3f240e; }
+.dvPager .dvPagerBtnList a.omitBtn:hover { background: none; }
+.dvPager .dvPagerBtnList .active a {background: #633c1c;border-color: #633c1c;color: white; }

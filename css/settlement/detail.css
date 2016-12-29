@@ -1,0 +1,123 @@
+﻿/*html,*/
+body {
+    font-size: 14px;
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+
+body.dialog {
+    background: #f2f2f2;
+/*    height: 100%;
+     width: 100%;
+    overflow: hidden;*/
+}
+/*
+form {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    margin: 0px;
+    padding: 0px;
+}*/
+
+
+a {
+  color: #337ab7;
+  text-decoration: none;
+}
+a:hover,
+a:focus {
+  color: #23527c;
+  text-decoration: none;
+}
+
+
+.dvDetailMargin {
+    margin: 0 10px 10px 10px;
+    padding: 0;
+}
+
+.dvDetailBar {
+    text-align: right;
+    border-width: 0;
+    background: #f2f2f2;
+    line-height: 30px;
+}
+
+.dvDetailBar .sTitle{padding-left: 18px; font-weight: 600; color: #555; font-family: Arial;}
+
+.dvDetailBar .dvDetailBarLeft {
+    float: left;
+    padding-left: 0;
+}
+
+.dvDetailContent {
+    background: #fff;
+}
+
+.NoMarginPadding {
+    margin: 0;
+    padding: 0;
+}
+
+label {
+    font-weight: normal !important
+}
+
+.row.list-group-item {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.row .col-xs-1,
+.row .col-xs-2,
+.row .col-xs-3,
+.row .col-xs-4,
+.row .col-xs-5,
+.row .col-xs-6,
+.row .col-xs-7,
+.row .col-xs-8,
+.row .col-xs-9,
+.row .col-xs-10,
+.row .col-xs-11,
+.row .col-xs-12 {
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+
+
+.form-table{
+  margin-top: 15px;
+  margin-bottom: 15px;
+  background-color: #fff;
+}
+
+.form-table .table{
+  
+}
+
+.form-table .table>tbody>tr>td, 
+.form-table .table>tbody>tr>th, 
+.form-table .table>tfoot>tr>td, 
+.form-table .table>tfoot>tr>th, 
+.form-table .table>thead>tr>td, 
+.form-table .table>thead>tr>th{
+  border-top: 0px;
+}
+
+
+.form-table .table .mini-textbox-border,
+.form-table .table .mini-buttonedit-border{
+    border-width: 0px;
+    border-radius: 0px;
+    border-bottom-width: 1px;
+}
+
+.form-table .table .mini-textbox-focus .mini-textbox-border,
+.form-table .table .mini-buttonedit-focus .mini-buttonedit-border{
+    border-color: #66afe9;
+    outline: 0;
+    box-shadow: none;
+}

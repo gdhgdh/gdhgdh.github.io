@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>商家结算账单列表</title>
+
+    <link href="../../css/bootstrap.css" rel="stylesheet" />
+    <link href="../../css/font-awesome/font-awesome.css" rel="stylesheet" />
+
+    <link href="../../css/settlement/list.css" rel="stylesheet" />
+
+</head>
+<body>
+    <!--撑满页面-->
+    <div class="mini-fit">
+        <div class="mini-layout" style="width: 100%; height: 100%;">
+            <div title="north" region="north" showsplit="false" showheader="false" height="40" splitsize="2" bodystyle="overflow:hidden;" style="margin: 0px; padding-left:20px; border-width: 0;vertical-align:middle;line-height:34px">
+                <div class="mini-toolbar" style="text-align: left; border-top-width: 0; border-right-width: 0;float:left;">
+                   <!--  <input id="SearchStartTime" class="mini-datepicker" style="width:110px; " format="yyyy-MM-dd" showtime="false" allowInput="false" emptyText="开始日期" />
+
+                    <span>至</span>
+                    <input id="SearchEndTime" class="mini-datepicker" style="width:110px;" format="yyyy-MM-dd" showtime="false" allowInput="false" emptyText="结束日期" /> -->
+
+                    <input id="key" class="mini-textbox" emptytext="结算单号/供应商名称/编号" style="width: 200px; " />
+                    <a id="btnSearch" class="mini-button" iconcls="icon-search" plain="true">搜索</a>
+                    <input class="mini-combobox" style="width: 100px;"  name="" allowInput="false" valueFromSelect="true" onvaluechanged="" emptytext="选择状态"
+                    data="[{text:'全部',id:0},{text:'待核对',id:1},{text:'审核中',id:2},{text:'审核通过',id:3},{text:'已驳回',id:4},{text:'待支付',id:5},{text:'已支付',id:6},{text:'被止付',id:7} ]" valueField="id" textField="text" />
+
+                </div>
+                <div class="mini-toolbar" style="text-align: right; border-top-width: 0; border-right-width: 0;float:right;">
+                    <!-- <a class="mini-button" iconcls="icon-addnew" plain="true" onclick="AddNew()">新增</a> -->
+                    <a class="mini-button" iconcls="icon-reload" plain="true" onclick="reload()">刷新</a>
+                    <!-- <a class="mini-button" iconcls="icon-print" plain="true" onclick="print()">打印</a> -->
+                    <a class="mini-button" iconcls="icon-daoru" plain="true" onclick="ImportGoods">导出</a>
+                </div>
+                <!--menu-->
+                <ul id="popupMenuSifting" class="mini-menu" style="display: none;" url=""
+                    textfield="text" idfield="id" parentfield="pid"></ul>
+                <!--menu-->
+            </div>
+
+            <div title="center" region="center" bodystyle="overflow:hidden;" style="margin: 0px; padding: 0px; border-width: 0;">
+                <div id="datagrid1" class="mini-datagrid" style="width: 100%; height: 100%;" borderstyle="border-bottom:0;" allowresize="false" allowalternating="false" pagesize="50" sizelist="[30,50,100,500]" showReloadButton="false"
+                     url="" idfield="id" sortField="CreatedOn" sortOrder="desc" multiselect="false" onrowdblclick="onRowDblClick" 
+                     allowcellwrap="true">
+                    <div property="columns">
+                        <!-- <div name="action" width="60" headeralign="center" align="center">操作</div> -->
+                        <div field="NAME" width="200" headeralign="center" align="left" allowsort="true">供应商名称</div>
+                        <div field="CODE" width="200" headeralign="center" align="left" allowsort="true">供应商编码</div>
+                        <div field="NUMBER" width="200" headeralign="center" align="left" allowsort="true">结算单号</div>
+                        <div field="StorageName1" width="120" headeralign="center" allowsort="true">本期实付金额</div>
+                        <div field="IsOutStorage" width="100" headeralign="center" align="center" allowsort="true">本期应付金额</div>
+                        <div header="本期扣项" headeralign="center">
+                            <div property="columns">
+                                <!-- <div field="" width="120" headeralign="center">现金</div> -->
+                                <div field="" width="120" headeralign="center">账扣</div>
+                                <div field="" width="120" headeralign="center">本期预付款金额</div>
+                                
+                            </div>
+                        </div>
+                        <div header="发票金额" headeralign="center">
+                            <div property="columns">
+                                <div field="" width="120" headeralign="center">应开票金额</div>
+                                <div field="" width="120" headeralign="center">应开票税额</div>
+                            </div>
+                        </div>
+                        <div field="RecordStatusName" width="80" headeralign="center" align="center" allowsort="true">状态</div>
+
+                        <div field="VerifiedOn" width="120" headeralign="center" align="center" dateformat="yyyy-MM-dd HH:mm" allowsort="true">结算单生成日期</div>
+
+
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+    <script src="../../js/boot.js"></script>
+
+    <script src="../../js/settlement/merchant_settlement_list.js"></script>
+    <script src="../../js/plugins/mock-min.js"></script>
+    <script type="text/javascript">
+        var mydata = Mock.mock({
+              "array|50": [
+              {
+                "id|+1":/[1-9](\d){10}/,
+                "name|+1": ["供应商1","2222","3333"],
+                "StockAllotNo|+1": /[1-9](\d){16}/,
+                "StorageName1|+1": ["劲沃牌柴油车专用全合成润滑油4L装", "Java编程思想（第4版） [thinking in java]", "Spring实战（第4版）", "西部数据（WD） Elements 新元素系列 2.5英寸", "东芝（TOSHIBA）新黑甲虫系列 2TB", "东芝（TOSHIBA）新北极熊系列", "星期六（ST&SAT)黑色牛皮细跟尖头单鞋SS5311506210", "阿迪达斯男鞋2016新款运动鞋", "保时捷轮胎", "迪士尼汽车用品头枕一对", "绿帝新货建宁莲子无芯通芯白莲去芯干货土特产"], //Mock.Random.ctitle(10, 15),
+                 "IsOutStorage|1": ["广州仁浩商贸有限公司", "东莞市银石礼品制造有限公司", "景德镇秋虎陶瓷有限公司", "上海乾瓷祥贸易有限公司", "广州市天录雪工艺品有限公司", "广州腾洪工艺品有限公司", "上海锦途广告制作有限公司"],
+                 "amount|100-999.2-2": 100.20,
+                 "total|1000-9999.2-2": 1000,
+                 "workstock|1-99": 10,
+                 "freeze|1-99": 10,
+                 "invdate": function (){
+                   return Mock.Random.datetime()
+                 }
+              }
+              ]
+        }).array; 
+
+    </script>
+</html>
+
+

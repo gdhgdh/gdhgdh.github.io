@@ -1,0 +1,179 @@
+﻿
+@{
+    ViewBag.Title = "StockAllotDetail";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>库存调拨单</title>
+    @Scripts.Render("~/detail/js")
+    @Styles.Render("~/detail/css")
+    <style>
+
+        .basicInfoForm label{
+            width:6em;text-align:right;
+        }
+        .asLabel .mini-textbox-border{border:none;background:none;}
+        #StockAllotNo .mini-textbox-input{color:red;}
+    </style>
+</head>
+<body class="dialog">
+    <div class="mini-fit dvDetailMargin">
+        <input name="ColseAction" class="mini-hidden" value="close" />
+        <form id="form1" class="ptForm" method="post" role="form">
+            <input name="StockAllotID" class="mini-hidden" value="" />
+
+            <!--板块02-->
+            <div class="mini-fit" style="overflow: hidden;">
+                <!--工具条-->
+                <div class="mini-toolbar dvDetailBar" style="overflow: hidden;">
+                    <div class="pull-left">
+                        <input class="mini-combobox" style="width:160px;" textField="BillsName" valueField="BillsPropertyID" name="BillsPropertyID"
+                               url="" showNullItem="false" allowInput="false" />  
+                        <span id="billdate"><label>【制单日期】</label><input name="CreatedOn" class="mini-textbox asLabel" style="width: 90px;" dataFormat="yyyy-MM-dd" showtime="true" value="" /></span>
+                        <span id="allotNo"><label>【调拨单号】</label><input class="mini-textbox asLabel" id="StockAllotNo" style="width:250px;" readonly name="StockAllotNo" /></span>
+                            <a id="btnShipping" onclick="viewShippingFlow" class="mini-button" iconcls="icon-search" plain="true">查看物流轨迹</a>
+                        
+                    </div>
+
+                    <a class="mini-button editselect" iconcls="icon-save" id="onSave" onclick="onSave" plain="true">保存</a>
+                    <a class="mini-button" iconcls="icon-print" plain="true" id="onPrint" onclick="printBill()">打印</a>
+                    <a class="mini-button" iconcls="icon-next" onclick="onCancel" plain="true">退出</a>
+                </div>
+                <!--内容-->
+                <div class="mini-fit  dvDetailContent" style="clear:both;overflow: hidden;">
+                    <div class="mini-splitter"  style="width:100%;height: 100%;" vertical="true">
+                        <!-- 上半部分 表单 -->
+                        <div showCollapseButton="true" size="278">
+                            <div style="width: 100%; padding-top: 20px;border:none;" class="basicInfoForm  list-group-item row" showCollapseButton="true">
+                                <div class="col-sm-4" id="area_logistics">
+                                    <div class="form-group">
+                                        <label>物流名称：</label><input class="mini-textbox" style="width: 200px;" name="LogisticsName" readonly emptyText="后续生成" />
+                                        <input class="mini-textbox" visible="false" name="LogisticsID"  />
+                                        @*TODO: 查物流表显示名称*@
+                                    </div>
+                                    <div class="form-group">
+                                        <label>运单号：</label><input class="mini-textbox" style="width: 200px;" readonly  name="LogisticsOrder" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>物流单号：</label><input class="mini-textbox" style="width: 200px;" name="GlobalOrderNum" readonly emptyText="后续生成" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>规格：</label><input class="mini-textbox" style="width: 200px;" name="ShipmentSpecs" readonly />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>重量(g)：</label><input class="mini-textbox " style="width: 200px;" readonly name="ShipmentWeight" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="">长宽高：</label>
+                                        <input class="mini-textbox" style="width:55px;" readonly name="ShipmentLength" />*
+                                        <input class="mini-textbox" style="width:55px;" readonly name="ShipmentWidth" />*
+                                        <input class="mini-textbox" style="width:55px;" readonly name="ShipmentHeight" />cm
+                                    </div>                           
+                                    
+                                </div>
+                                <div class="col-sm-4" id="area_out">
+                                    <div class="form-group">
+                                        <label>调出仓库：</label><input class="mini-buttonedit" style="width: 200px;" onbuttonclick="toSelectWarehouse" required name="OutStorageID" id="outStorage" />
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>发货人：</label><input class="mini-textbox" style="width: 200px;" required name="Sender" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>发货人电话：</label><input class="mini-textbox" style="width: 200px;" required vtype="int" name="SenderTel" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>发货地址：</label><input class="mini-textbox" style="width: 200px;" required name="SendAddress" />
+                                    </div>
+                                     <div class="form-group">
+                                        <label>出库日期：</label><input class="mini-datepicker" style="width: 200px;"  name="OutDate" format="yyyy-MM-dd" readonly />
+                                    </div>
+                                    <div class="form-group" id="area_Deduction">
+                                        <label>附加费用：</label>
+                                        <input name="Deduction" class="mini-textbox" style="width: 200px;" ></input>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4" id="area_in">
+                                    <div class="form-group">
+                                        <label>调入仓库：</label><input class="mini-buttonedit" style="width: 200px;" onbuttonclick="toSelectWarehouse" required name="InStorageID" id="inStorage" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>收货人：</label><input class="mini-textbox " style="width: 200px;" type="text" required name="ContactName" >
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>收货人电话：</label><input class="mini-textbox" style="width: 200px;" required vtype="int" name="ContactTel" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>收货地址：</label><input class="mini-textbox" style="width: 200px;" required name="ShippingAddress" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>入库日期：</label><input class="mini-datepicker" style="width: 200px;"  name="InDate" dateformat="yyyy-MM-dd" readonly />
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <!-- 下半部分 商品 -->
+                        <div showCollapseButton="false" style="border: 0;">
+                            <div class="mini-fit">
+                                <div class="mini-toolbar pl-20">
+                                    <input id="prodFilter" class="mini-textbox" emptytext="产品名称/编号" onvaluechanged="onFilterChanged"  style="width: 200px;" />
+                                    <a id="btnSearch" class="mini-button" iconcls="icon-search" plain="true">快速查找</a>
+                                    <a class="mini-button editselect" iconcls="icon-addnew" id="onAddProduct" onclick="onAddProduct" plain="true">选择商品</a>
+                                </div>
+                                <div class="clearfloat" style="height: 2px;"></div>
+                                <div class="mini-fit">
+                                    <div id="gridProducts" class="mini-datagrid" style="width: 100%; height: 100%;" borderstyle="border-bottom:0;" allowresize="false" allowalternating="false"
+                                         data="productsRows" idfield="SkuCode" showPager="false" allowCellEdit="true" allowCellSelect="true" showSummaryRow="true" ondrawsummarycell="onDrawSummaryCell"
+                                         allowcellwrap="true">
+                                        <div property="columns">
+                                            <div name="action" width="40" headeralign="center" align="center" renderer="onActionRenderer">操作</div>
+                                            @*<div field="DetailNo" width="40" headeralign="center" align="center">序号</div>*@
+                                            <div type="indexColumn"></div>
+                                            <div field="SkuCode" width="120" headeralign="center" align="left">产品编号</div>
+                                            <div field="ProductName" width="150" headeralign="center" cellstyle="font-weight:500;">产品名称</div>
+                                            <div field="ProductModel" width="120" headeralign="center">规格型号</div>
+                                            <div field="unit" width="30" headeralign="center" align="center">单位</div>
+                                            <div field="AvailableInventory" width="60" headeralign="center" align="center">出库仓<br/>当前库存</div>
+                                            <div field="InInventory" width="60" headeralign="center" align="center">入库仓<br/>当前库存</div>
+                                            <div field="Quantity"  width="60" headeralign="center" align="center" summaryType="sum">数量
+                                                <input property="editor" class="mini-textbox" vtype="int" />
+                                            </div>
+                                            <div field="OutQuantity" width="80" headeralign="center" align="center">出库数量</div>
+                                            <div field="InQuantity" width="80" headeralign="center" align="center">入库数量</div>
+                                            <div field="Price" width="60" headeralign="center" datatype="currency" currencyunit="￥" align="right" >单价</div>
+                                            <div field="ReferencePrice" width="60" headeralign="center" datatype="currency" currencyunit="￥" align="right">零售价</div>
+                                            <div field="totalCost" width="80" headeralign="center" datatype="currency" currencyunit="￥" align="right" cellstyle="color:red;" summaryType="sum" decimalPlaces="2">总金额</div>
+                                            <div field="Remark" width="50" headeralign="center" align="center">备注
+                                                <input property="editor" class="mini-textbox" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- 页脚记录人、审核人、制单人 之类的 -->
+                            <div style="width: 100%; padding-top: 20px; height: 70px;" class="basicInfoForm  list-group-item row">
+                                <div class="form-group col-xs-6 ">
+                                    <label>审核人：</label><input class="mini-textbox" style="width: 150px;" readonly name="VerifierName" />
+                                </div>
+                                <div class="form-group col-xs-6 ">
+                                    <label>制单人：</label><input class="mini-textbox" style="width: 150px;" readonly name="CreatedByName" />
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <script src="/Scripts/inventory/dialog/LogisticsInfoWindow.js"></script>
+    <script src="/Scripts/inventory/jicaiOrder/stockAllotDetail.js"></script>
+</body>
+</html>

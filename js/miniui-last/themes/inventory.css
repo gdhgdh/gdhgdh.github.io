@@ -1,0 +1,15 @@
+.required {
+    color: #F07868;
+}
+
+
+
+
+.mini-textbox-readOnly .mini-textbox-border, 
+.mini-textbox-readOnly .mini-buttonedit-border,
+.mini-buttonedit-readOnly .mini-buttonedit-border
+{
+	background: #ebebeb;
+	border-color: #ddd;
+	box-shadow: none;
+}

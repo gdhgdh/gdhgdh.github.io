@@ -1,0 +1,271 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>库存调拨</title>
+    @Styles.Render("~/list/css")
+    @Scripts.Render("~/list/js")
+    <link href="~/Styles/bootstrap.css" rel="stylesheet" />
+    <link href="~/Styles/font-awesome/font-awesome.css" rel="stylesheet" />
+    <style>
+
+    </style>
+</head>
+<body>
+    <!--撑满页面-->
+    <div class="mini-fit">
+        <div class="mini-layout" style="width: 100%; height: 100%;">
+            <div title="north" region="north" showsplit="false" showheader="false" height="40" splitsize="2" bodystyle="overflow:hidden;" style="margin: 0px; padding-left:20px; border-width: 0;vertical-align:middle;line-height:34px">
+                <div class="mini-toolbar" style="text-align: left; border-top-width: 0; border-right-width: 0;float:left;">
+                    <input id="SearchStartTime" class="mini-datepicker" style="width:110px; " format="yyyy-MM-dd" showtime="false" allowInput="false" emptyText="开始日期" />
+
+                    <span>至</span>
+                    <input id="SearchEndTime" class="mini-datepicker" style="width:110px;" format="yyyy-MM-dd" showtime="false" allowInput="false" emptyText="结束日期" />
+
+                    <input id="key" class="mini-textbox" emptytext="调拨单号/仓库/创建人" style="width: 200px; " />
+                    <a id="btnSearch" class="mini-button" iconcls="icon-search" plain="true">搜索</a>
+
+                </div>
+                <div class="mini-toolbar" style="text-align: right; border-top-width: 0; border-right-width: 0;float:right;">
+                    <a class="mini-button" iconcls="icon-addnew" plain="true" onclick="AddNew()">新增</a>
+                    <a class="mini-button" iconcls="icon-reload" plain="true" onclick="reload()">刷新</a>
+                    <a class="mini-button" iconcls="icon-print" plain="true" onclick="print()">打印</a>
+                    <a class="mini-button" iconcls="icon-daoru" plain="true" onclick="ImportGoods">导出</a>
+                </div>
+                <!--menu-->
+                <ul id="popupMenuSifting" class="mini-menu" style="display: none;" url=""
+                    textfield="text" idfield="id" parentfield="pid"></ul>
+                <!--menu-->
+            </div>
+
+            <div title="center" region="center" bodystyle="overflow:hidden;" style="margin: 0px; padding: 0px; border-width: 0;">
+                <div id="datagrid1" class="mini-datagrid" style="width: 100%; height: 100%;" borderstyle="border-bottom:0;" allowresize="false" allowalternating="false" pagesize="50" sizelist="[30,50,100,500]" showReloadButton="false"
+                     url="/JiCaiOrderGetAjax/GetStockAllotList" idfield="StockAllotID" sortField="CreatedOn" sortOrder="desc" multiselect="false" onrowdblclick="onRowDblClick" 
+                     allowcellwrap="true">
+                    <div property="columns">
+                        <div name="action" width="60" headeralign="center" align="center">操作</div>
+                        <div field="StockAllotNo" width="200" headeralign="center" align="left" allowsort="true">调拨单号</div>
+                        <div field="StorageName1" width="120" headeralign="center" allowsort="true">调出仓库</div>
+                        <div field="IsOutStorage" width="100" headeralign="center" align="center" allowsort="true">是否出库</div>
+                        <div field="StorageName" width="120" headeralign="center" cellstyle="font-weight:500;" allowsort="true">调入仓库</div>
+                        <div field="IsInStorage" width="100" headeralign="center" align="center" allowsort="true">是否入库</div>
+                        <div field="RecordStatusName" width="80" headeralign="center" align="center" allowsort="true">审核状态</div>
+                        <div field="Verifier" width="80" headeralign="center" align="center" allowsort="true">审核人</div>
+
+                        <div field="VerifiedOn" width="120" headeralign="center" align="center" dateformat="yyyy-MM-dd HH:mm" allowsort="true">审核时间</div>
+                        <div field="CreatedBy" width="80" headeralign="center" align="center" allowsort="true">创建人</div>
+                        <div field="CreatedOn" width="120" headeralign="center" align="center" dateformat="yyyy-MM-dd HH:mm" allowsort="true">创建时间</div>
+
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>
+<script type="text/javascript">
+    $(document).ready(function () {
+        mini.parse();
+        var grid = mini.get("datagrid1");
+        grid.load();
+        /////////////////////////////////////////////
+        ///搜索----------------------------------------------
+        mini.get("key").focus();
+        $(document).keypress(function (e) {
+            if (!e) e = window.event; //火狐中是 window.event
+            if ((e.keyCode || e.which) == 13) {
+                var obtnSearch = document.getElementById("btnSearch");
+                obtnSearch.focus(); //让另一个控件获得焦点就等于让文本输入框失去焦点
+                obtnSearch.click();
+                return false;
+            }
+        });
+        $("#btnSearch").bind("click", function () {
+            var key = mini.get("key").getValue();
+            var starttime = mini.get("SearchStartTime").getFormValue();
+            if( starttime !=""){starttime += " 00:00:00.000";} 
+            var endtime = mini.get("SearchEndTime").getFormValue();
+            if(endtime != ""){endtime += " 23:59:59.999"}
+            grid.load({ key: key, StartTime: starttime, EndTime: endtime });
+
+        });
+
+        //---筛选菜单项选中时发生--------------------
+        var menuSifting = mini.get("popupMenuSifting");
+        menuSifting.on("itemclick", function (e) {
+            var item = e.item;
+            var value = item.id;
+            var pid = item.pid;
+            var isLeaf = e.isLeaf;
+            if (isLeaf) {
+                if (pid.toString() == "IsOnSale") {
+                    grid.load({ isOnSale: value });
+                } else if (pid.toString() == "IsSupply") {
+                    grid.load({ isSupply: value });
+                } else if (pid.toString() == "TagState") {
+                    grid.load({ tagState: value });
+                }
+            }
+        });
+
+
+        //单元格绘制-----------------------------------------
+        grid.on("drawcell", function (e) {
+            var record = e.record,
+                    column = e.column,
+                    field = e.field,
+                    value = e.value;
+            var type = record.Type;
+
+            if (field == "IsOutStorage") {
+                if (value== true) {
+                    e.cellHtml = '<span class="icon-ok" style="padding-left:20px; cursor:pointer;text-decoration:none;"></span>';
+                }else {
+                    e.cellHtml = '<span class="icon-cancel" style="padding-left:20px; cursor:pointer;text-decoration:none;"></span>';
+                } 
+
+            }
+
+            if (field == "IsInStorage") {
+                if (value == true) {
+                    e.cellHtml = '<span class="icon-ok" style="padding-left:20px; cursor:pointer;text-decoration:none;"></span>';
+                } else {
+                    e.cellHtml = '<span class="icon-cancel" style="padding-left:20px; cursor:pointer;text-decoration:none;"></span>';
+                }
+
+            }
+
+            if (column.name == "action") {
+                if (record.RecordStatusName == "已审核") {
+                    var str = '<a class="list-action-cannot">审核</a>';
+                } else {
+                    var str = '<a class="list-action-can" onclick="onAudit(' + "'" + record.StockAllotID + "'" + ',' + record.RecordStatus + ')"' + '>审核</a>';
+                }
+
+                e.cellHtml = str;
+            }
+        });
+        ///////////////////////////////////////////////////////////////
+    });
+
+
+
+
+
+    /////////////////////////////////////////////////////////////////////////////
+    ///新增调拨单------------------------------------------------------
+    function AddNew() {
+        var data = { action: "new" };
+        _erp.JiCaiOrderOpen.OpenAllocationDetail(data, function (retData) {
+            if (retData == "ok") {
+                var grid = mini.get("datagrid1");
+                grid.reload();
+            }
+        });
+    };
+    //修改调拨单--------------------------------
+    function UpdateAllocationFile(pid, audited) {
+        if (audited == 1) {
+            var data = { action: "view", Id: pid };
+        }
+        else {
+            var data = { action: "update", Id: pid };
+        }
+        _erp.JiCaiOrderOpen.OpenAllocationDetail(data, function (retData) {
+            if (retData == "ok") {
+                var grid = mini.get("datagrid1");
+                grid.reload(function () {
+                    var r = grid.findRow(function (row) {
+                        if (row.Id == pid) return true;
+                    });
+                    grid.select(r);
+                });
+            }
+        });
+    }
+
+    //审核预判
+    function onAudit(id, status) {
+        // 状态值：0未审核，1已审核
+        var msg = status == 0 ? "确认审核？" : "取消审核？";
+        var tgt = status == 0 ? 1 : 0;
+        mini.confirm(msg, "", function (action) {
+            if (action == "ok") {
+                var options = { Id: id, status: tgt };
+                audit(options);
+
+            }
+        })
+    }
+    // 审核执行
+    function audit(options) {
+        _erp.Ajax.Post("/JiCaiOrderPostAjax/" + "AuditStockAllot/", options, function (retData) {
+            if (retData && retData != "" && retData != "null") {
+                retData = mini.decode(retData);
+            }
+            if (retData.StatuName == "ok") {
+                mini.alert(retData.Msg);
+                //刷新
+                var grid = mini.get("datagrid1");
+                grid.reload();
+            }
+        });
+    }
+    //验收
+    function acceptance(goodsId) {
+        mini.confirm("dd", "审核确认", function (action) {
+            if (action == "ok") {
+                alert(goodsId);
+                //刷新
+                var grid = mini.get("datagrid1");
+                grid.reload();
+            }
+        })
+    }
+
+    // 双击行------------------------------------------------------------
+    function onRowDblClick(e) {
+        var row = e.record;
+        var id = row.StockAllotID;
+        console.log(row)
+        UpdateAllocationFile(id,row.RecordStatus);
+    }
+    // 单击行------------------------------------------------------------
+    function onRowClick(e) {
+
+    }
+    ///重载--------------------
+    function reload() {
+        mini.parse();
+        var grid = mini.get("datagrid1");
+        grid.load();
+    }
+    //打印
+    function print() {
+        mini.parse();
+        var grid = mini.get("datagrid1");
+        var rows = grid.getSelecteds();
+        var idList = [];
+        for (var i = 0; i < rows.length; i++) {
+            var row = rows[i];
+            idList.push(row._ObjectID);
+        }
+        var ids = idList.join(",");
+        if (ids == "") {
+            mini.alert("请先选择一条数据！");
+            return false;
+        }
+        utils.printReport("rptStockAllot", ids);
+    }
+///////////////
+</script>
+

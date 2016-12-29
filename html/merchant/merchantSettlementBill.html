@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>商家结算账单</title>
+    <link href="../../css/bootstrap.css" rel="stylesheet" />
+    <link href="../../css/font-awesome/font-awesome.css" rel="stylesheet" />
+
+    <!-- <link href="../../css/settlement/list.css" rel="stylesheet" /> -->
+    <link href="../../css/settlement/detail.css" rel="stylesheet" />
+    <style>
+
+        .basicInfoForm label{
+            width:6em;text-align:right;
+        }
+        .asLabel .mini-textbox-border{border:none;background:none;}
+        #StockAllotNo .mini-textbox-input{color:red;}
+    </style>
+</head>
+<body class="dialog">
+    <div class=" dvDetailMargin" style="">
+        <!-- <div class="mini-layout" style="width: 100%; height: 100%;"> -->
+
+            <input name="ColseAction" class="mini-hidden" value="close" />
+            <form id="form1" class="ptForm" method="post" role="form">
+                <input name="id" class="mini-hidden" value="" />
+
+                <!--板块02-->
+                <div class="" style="">
+                    <!--工具条-->
+                    <div class="mini-toolbar dvDetailBar" style="border: 0;border-bottom: solid 1px #ddd;">
+                        <h4 class="text-center">结算单明细</h4>
+                        <div class="" style="position:absolute;right:0;top:10px;">
+                            <a class="mini-button editselect" iconcls="icon-save" id="onSave" onclick="onSave" plain="true">保存</a>
+                            <a class="mini-button" iconcls="icon-print" plain="true" id="onPrint" onclick="printBill()">打印</a>
+                            <a class="mini-button" iconcls="icon-next" onclick="onCancel" plain="true">退出</a>
+                            
+                        </div>
+
+                    </div>
+                    <!--内容-->
+                    <div class="dvDetailContent" style="clear:both;padding: 0 10px;">
+                        <div class=""  style="" >
+                            <!-- 上半部分 表单 -->
+                            <div>
+                                <div class="row">
+                                    <div class="col-sm-6 col-md-4 col-lg-3"><label>供应商名称：</label><input class="mini-textbox asLabel" name="" value="测试数据"></input></div>
+                                    <div class="col-sm-6 col-md-4 col-lg-3"><label>结算单生成日期：</label><input class="mini-textbox asLabel" name=""></input></div>
+                                    <div class="col-sm-6 col-md-4 col-lg-3"><label>供应商编号：</label><input class="mini-textbox asLabel" name=""></input></div>
+                                    <div class="col-sm-6 col-md-4 col-lg-3"><label>商家对账人：</label><input class="mini-textbox asLabel" name=""></input></div>
+                                    <div class="col-sm-6 col-md-4 col-lg-3"><label>联系方式：</label><input class="mini-textbox asLabel" name=""></input></div>
+                                    <div class="col-sm-6 col-md-4 col-lg-3"><label>银行账户名称：</label><input class="mini-textbox asLabel" name=""></input></div>
+                                    <div class="col-sm-6 col-md-4 col-lg-3"><label>银行账户号：</label><input class="mini-textbox asLabel" name=""></input></div>
+                                    <div class="col-sm-6 col-md-4 col-lg-3"><label>开户银行：</label><input class="mini-textbox asLabel" name=""></input></div>
+                                </div>
+                                <div>
+                                    <div id="datagrid1" class="mini-datagrid" style="width: 100%; " borderstyle="border-bottom:0;" allowresize="false" allowalternating="false" showPager="false"
+                                         url="" idfield="id" sortField="CreatedOn" sortOrder="desc" multiselect="false" onrowdblclick="onRowDblClick" 
+                                         allowcellwrap="true">
+                                        <div property="columns">
+                                            <!-- <div name="action" width="60" headeralign="center" align="center">操作</div> -->
+                                            <div field="NUMBER" width="100" headeralign="center" align="left" allowsort="true">结算单号</div>
+                                            <div field="StorageName1" width="120" headeralign="center" allowsort="true">本期实付金额</div>
+                                            <div field="IsOutStorage" width="100" headeralign="center" align="center" allowsort="true">本期应付金额</div>
+                                            <div header="本期扣项" headeralign="center" width="200">
+                                                <div property="columns">
+                                                    <!-- <div field="" width="120" headeralign="center">现金</div> -->
+                                                    <div field="amount" width="100" headeralign="center">账扣</div>
+                                                    <div field="amount1" width="100" headeralign="center">本期预付款金额</div>
+                                                    
+                                                </div>
+                                            </div>
+                                            <div header="发票金额" headeralign="center" width="200">
+                                                <div property="columns">
+                                                    <div field="amount2" width="100" headeralign="center">应开票金额</div>
+                                                    <div field="amount3" width="100" headeralign="center">应开票税额</div>
+                                                </div>
+                                            </div>
+                                            <div field="RecordStatusName" width="80" headeralign="center" align="center" allowsort="true">状态</div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- 下半部分 商品 -->
+                            <h4>结算订单明细</h4>
+                            <p>如结算单据数据有问题，请拨打客服电话 400-136-9889</p>
+
+                            <div>
+                                <div id="datagrid2" class="mini-datagrid" style="width:100%;" borderstyle="border-bottom:0;" allowresize="false" allowalternating="false" pagesize="50" sizelist="[30,50,100,500]" showReloadButton="false"
+                                     url="" idfield="StockAllotID" sortField="CreatedOn" sortOrder="desc" multiselect="true" onrowdblclick="onRowDblClick" 
+                                     allowcellwrap="true">
+                                    <div property="columns">
+                                        <!-- <div name="action" width="60" headeralign="center" align="center">操作</div> -->
+                                        <div type="checkColumn"></div>
+                                        <div field="no" width="100" headeralign="center" align="left" allowsort="true">订单号</div>
+                                        <div field="name" width="100" headeralign="center" align="left" allowsort="true">供应商名称</div>
+                                        <div field="CODE" width="100" headeralign="center" align="left" allowsort="true">供应商编码</div>
+                                        <div field="NUMBER" width="100" headeralign="center" align="left" allowsort="true">一级分类</div>
+                                        <div field="f1" width="100" headeralign="center" align="left" allowsort="true">二级分类</div>
+                                        <div field="f2" width="100" headeralign="center" align="left" allowsort="true">三级分类</div>
+                                        <div field="f3" width="100" headeralign="center" align="left" allowsort="true">商品名称</div>
+                                        <div field="f4" width="100" headeralign="center" align="left" allowsort="true">商品编码</div>
+                                        <div field="f5" width="100" headeralign="center" align="left" allowsort="true">SKU编码</div>
+                                        <div field="f6" width="100" headeralign="center" align="left" allowsort="true">货号</div>
+                                        <div field="f7" width="100" headeralign="center" align="left" allowsort="true">型号规格</div>
+                                        <div field="f8" width="100" headeralign="center" align="left" allowsort="true">供货价</div>
+                                        <div field="f9" width="100" headeralign="center" align="left" allowsort="true">销售数量</div>
+                                        <div field="f10" width="100" headeralign="center" align="left" allowsort="true">税金</div>
+                                        <div field="f11" width="100" headeralign="center" align="left" allowsort="true">订单总金额</div>
+                                        <div field="f12" width="100" headeralign="center" align="left" allowsort="true">应结算金额</div>
+                                        <div field="f13" width="100" headeralign="center" align="left" allowsort="true">下单时间</div>
+                                        <div field="f14" width="100" headeralign="center" align="left" allowsort="true">发货时间</div>
+                                        <div field="f15" width="100" headeralign="center" align="left" allowsort="true">签收时间</div>
+                                        <div field="f16" width="100" headeralign="center" align="left" allowsort="true">订单状态</div>
+                                        <div field="f17" width="100" headeralign="center" align="left" allowsort="true">支付流水号</div>
+                                        <div field="f19" width="100" headeralign="center" align="left" allowsort="true">是否有退款</div>
+                                        <div field="f20" width="100" headeralign="center" align="left" allowsort="true">退货数量</div>
+                                        <div field="f21" width="100" headeralign="center" align="left" allowsort="true">退货金额</div>
+                                        <div field="f22" width="100" headeralign="center" align="left" allowsort="true">合作方式</div>
+                                        <div field="VerifiedOn" width="120" headeralign="center" align="center" dateformat="yyyy-MM-dd HH:mm" allowsort="true">状态</div>
+                                        <div field="RecordStatusName" width="80" headeralign="center" align="center" allowsort="true">备注</div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <h4>审核记录</h4>
+                            <div>
+                                <div id="datagrid3" class="mini-datagrid" style="width: 100%; "  allowresize="false" showPager="false"
+                                     url="" allowcellwrap="true" showColumns="true" showHGridLines="false" showVGridLines="false">
+                                    <div property="columns">
+                                        <div field="VerifiedOn" width="80" headeralign="center" align="center" dateformat="yyyy-MM-dd HH:mm" allowsort="true">操作时间</div>
+                                        <div field="name" width="100" headeralign="center" align="left" allowsort="true">操作人</div>
+                                        <div field="text" width="200" headeralign="center" align="left" allowsort="true">内容</div>
+                                        <div field="remark" width="80" headeralign="center" align="center" allowsort="true">备注</div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </form>
+        <!-- </div> -->
+    </div>
+
+        <script src="../../js/boot.js"></script>
+
+    <script src="../../js/settlement/merchant_settlement_bill.js"></script>
+    <script src="../../js/plugins/mock-min.js"></script>
+    <script type="text/javascript">
+        var grid1data = Mock.mock({
+              "array|2": [
+              {
+                "name|1": ["供应商1","2222","3333"],
+                "NUMBER|+1": /[1-9](\d){16}/,
+                "StorageName1|1": ["劲沃牌柴油车专用全合成润滑油4L装", "Java编程思想（第4版） [thinking in java]", "Spring实战（第4版）", "西部数据（WD） Elements 新元素系列 2.5英寸", "东芝（TOSHIBA）新黑甲虫系列 2TB", "东芝（TOSHIBA）新北极熊系列", "星期六（ST&SAT)黑色牛皮细跟尖头单鞋SS5311506210", "阿迪达斯男鞋2016新款运动鞋", "保时捷轮胎", "迪士尼汽车用品头枕一对", "绿帝新货建宁莲子无芯通芯白莲去芯干货土特产"], //Mock.Random.ctitle(10, 15),
+                 "IsOutStorage|1": ["广州仁浩商贸有限公司", "东莞市银石礼品制造有限公司", "景德镇秋虎陶瓷有限公司", "上海乾瓷祥贸易有限公司", "广州市天录雪工艺品有限公司", "广州腾洪工艺品有限公司", "上海锦途广告制作有限公司"],
+                 "amount|100-999.2-2": 100.20,
+                 "amount1|100-999.2-2": 100.20,
+                 "amount2|100-999.2-2": 100.20,
+                 "amount3|100-999.2-2": 100.20,
+                 "RecordStatusName|1-99": 10,
+                 "invdate": function (){
+                   return Mock.Random.datetime()
+                 }
+              }
+              ]
+        }).array; 
+
+        var grid2data = Mock.mock({
+              "array|15": [
+              {
+                "no|+1":/[1-9](\d){6}/,
+                "name|+1": ["供应商1","2222","3333"],
+                "StockAllotNo|+1": /[1-9](\d){16}/,
+                "StorageName1|+1": ["劲沃牌柴油车专用全合成润滑油4L装", "Java编程思想（第4版） [thinking in java]", "Spring实战（第4版）", "西部数据（WD） Elements 新元素系列 2.5英寸", "东芝（TOSHIBA）新黑甲虫系列 2TB", "东芝（TOSHIBA）新北极熊系列", "星期六（ST&SAT)黑色牛皮细跟尖头单鞋SS5311506210", "阿迪达斯男鞋2016新款运动鞋", "保时捷轮胎", "迪士尼汽车用品头枕一对", "绿帝新货建宁莲子无芯通芯白莲去芯干货土特产"], //Mock.Random.ctitle(10, 15),
+                 "IsOutStorage|1": ["广州仁浩商贸有限公司", "东莞市银石礼品制造有限公司", "景德镇秋虎陶瓷有限公司", "上海乾瓷祥贸易有限公司", "广州市天录雪工艺品有限公司", "广州腾洪工艺品有限公司", "上海锦途广告制作有限公司"],
+                 "amount|100-999.2-2": 100.20,
+                 "total|1000-9999.2-2": 1000,
+                 "workstock|1-99": 10,
+                 "freeze|1-99": 10,
+                 "invdate": function (){
+                   return Mock.Random.datetime()
+                 }
+              }
+              ]
+        }).array; 
+        var grid3data = Mock.mock({
+              "array|3": [
+              {
+
+                "name|1": ["劲沃牌柴油车专用全合成润滑油4L装", "Java编程思想（第4版） [thinking in java]", "Spring实战（第4版）", "西部数据（WD） Elements 新元素系列 2.5英寸", "东芝（TOSHIBA）新黑甲虫系列 2TB", "东芝（TOSHIBA）新北极熊系列", "星期六（ST&SAT)黑色牛皮细跟尖头单鞋SS5311506210", "阿迪达斯男鞋2016新款运动鞋", "保时捷轮胎", "迪士尼汽车用品头枕一对", "绿帝新货建宁莲子无芯通芯白莲去芯干货土特产"], //Mock.Random.ctitle(10, 15),
+                 "text|1": ["广州仁浩商贸有限公司", "东莞市银石礼品制造有限公司", "景德镇秋虎陶瓷有限公司", "上海乾瓷祥贸易有限公司", "广州市天录雪工艺品有限公司", "广州腾洪工艺品有限公司", "上海锦途广告制作有限公司"],
+                 "remark|1-99": 10,
+                 "VerifiedOn": function (){
+                   return Mock.Random.datetime()
+                 }
+              }
+              ]
+        }).array; 
+    </script>
+</body>
+</html>

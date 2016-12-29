@@ -1,0 +1,82 @@
+body.canvas-menu .navbar-static-side, body.fixed-sidebar .navbar-static-side {
+    position: fixed;
+    width: 200px;
+    z-index: 2001;
+    height: 100%;
+}
+#page-wrapper { padding: 0 15px; position: inherit; margin: 0 0 0 200px }
+
+.nav-header {
+	background: white;padding: 10%;
+ }
+
+.nav-div-logo{
+}
+.nav-div-logo img{
+    /*width: 100%;*/
+    width: 51px;
+}
+#content-main { height: calc(100% - 95px); overflow: hidden }
+nav .group-name{
+    margin-left: 8px;
+    font-size: 20px;
+    color: #EA5251;
+    font-family: 'Microsoft Yahei',Tahoma,Arial;
+    font-weight: 600;
+}
+nav .system-name{
+	    font-size: 14px;
+    font-weight: 600;
+    font-family: 'Microsoft Yahei';
+    color: #555;
+    line-height: 50px;
+}
+.navbar-static-top { background: white; }
+
+
+/*skin*/
+@import 'color';
+.skin{
+	color: $blue_bg;
+}
+.nav li>a{color: white;}
+#wrapper{background-color: $blue_bg; }
+.navbar-default { background-color: transparent; border-color: $blue_bg; position: relative }
+.navbar-static-side{
+	background: $blue_bg;
+}
+/* menu */
+.fa.arrow.nav-collapse:before { content: "\f105" !important; }
+.fa.arrow:before { content: "\f107" }
+.nav li{list-style:none;font-family:'Microsoft Yahei';font-size: 14px;}
+.navbar-default .nav>li>a:focus, .navbar-default .nav>li>a:hover {background:0;  }
+.navbar-default .nav .nav-second-level>li>a:focus, .navbar-default .nav .nav-second-level>li>a:hover 
+{ background-color: $lighter_grey_bg;opacity:1; color: $blue_bg; }
+// .navbar-static-side .nav-li-first:hover .nva-div-shadow {
+//     // width: 95px;
+//     // height: 80px;
+//     // position: absolute;
+//     // top: 0;
+//     // left: 0;
+//     background: #fff;
+//     filter: alpha(opacity=50);
+//     -moz-opacity: 0.15;
+//     opacity: 0.15;
+//     filter: progid:DXImageTransform.Microsoft.Alpha(style=0,opacity=15);
+//     cursor: pointer;
+// }
+
+
+
+
+
+
+.page-tabs a.active {
+	background: $blue_bg;
+
+}
+.content-tabs { border-bottom: solid 2px $blue_bg; }
+.page-tabs a { color: #999 }
+.page-tabs a i { color: #ccc }
+.page-tabs a.active { background: $darker_grey_bg; color: $blue_bg; }
+.page-tabs a.active i:hover, .page-tabs a.active:hover { background: $blue_bg; color: white; }

@@ -1,0 +1,47 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>分页演示</title>
+    <link href="../../css/bootstrap.min.css" rel="stylesheet" />
+    <link href="pager.css" rel="stylesheet" />
+</head>
+    <body>
+        
+        <div class="dvPager">
+            <div class="dvPagerBtnList">
+                <ul class="pagination pagination-sm"></ul>
+            </div>
+        </div>
+
+        <div class="dvPager">
+            <div class="dvPagerBtnList">
+                <ul class="pagination"></ul>
+            </div>
+        </div>
+        
+        <div class="dvPager">
+            <div class="dvPagerBtnList">
+                <ul class="pagination pagination-lg"></ul>
+            </div>
+        </div>
+
+        <script src="../../../../Scripts/jquery-1.8.2.min.js"></script>
+        <script src="pager.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                var pager = new MyPager();
+                function DataLoad(pIndex) {
+
+                    var pData = { PageIndex: pIndex, PageCount: 105 }
+                    pager.Main(pData, function (reData) {
+                        DataLoad(reData);
+                    });
+                }
+
+                DataLoad(11);
+            });          
+        </script>
+
+    </body>
+</html>
