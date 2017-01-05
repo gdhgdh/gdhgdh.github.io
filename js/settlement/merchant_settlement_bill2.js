@@ -79,7 +79,7 @@
                 grid1.setData(data1);
                 grid2.setData(listOrder);
 
-                grid3.setData(listVerify);
+                // grid3.setData(listVerify);
 
 
             }
@@ -135,6 +135,18 @@
                     }
 
             },'json');
+        });
+        // 导出
+        $("#onExport").bind("click",function(){
+            mini.alert("等待导出接口！");
+        });
+        // 提交结算
+        $("#onSave").bind("click",function(){
+            mini.confirm("提交后系统将改变这批订单为已结算状态，确定提交吗？",function(action){
+                if (action == "ok") {
+                    mini.alert("等待提交接口！");
+                }
+            });
         });
     })
 });

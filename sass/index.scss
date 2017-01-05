@@ -1,35 +1,40 @@
+$left-nav-width: 100px;
 body.canvas-menu .navbar-static-side, body.fixed-sidebar .navbar-static-side {
     position: fixed;
-    width: 200px;
+    width: $left-nav-width;
     z-index: 2001;
     height: 100%;
 }
-#page-wrapper { padding: 0 15px; position: inherit; margin: 0 0 0 200px }
+#page-wrapper { padding: 0 15px; position: inherit;
+ margin: 0 0 0 $left-nav-width;
+}
 
 .nav-header {
-	background: white;padding: 10%;
+	background: white;height: 91px;
  }
 
 .nav-div-logo{
+    text-align: center;height: 100%;padding: 5px;
 }
 .nav-div-logo img{
-    /*width: 100%;*/
-    width: 51px;
+    height: 100%;margin:auto;
+    // width: 51px;
 }
 #content-main { height: calc(100% - 95px); overflow: hidden }
-nav .group-name{
+.navbar .group-name{
     margin-left: 8px;
     font-size: 20px;
     color: #EA5251;
     font-family: 'Microsoft Yahei',Tahoma,Arial;
     font-weight: 600;
 }
-nav .system-name{
-	    font-size: 14px;
+.navbar .system-name{
+    font-size: 14px;
     font-weight: 600;
     font-family: 'Microsoft Yahei';
     color: #555;
     line-height: 50px;
+    margin-left: 5px;
 }
 .navbar-static-top { background: white; }
 
@@ -37,13 +42,13 @@ nav .system-name{
 /*skin*/
 @import 'color';
 .skin{
-	color: $blue_bg;
+	color: $main_theme_color;
 }
 .nav li>a{color: white;}
-#wrapper{background-color: $blue_bg; }
-.navbar-default { background-color: transparent; border-color: $blue_bg; position: relative }
+#wrapper{background-color: $main_theme_color; }
+.navbar-default { background-color: transparent; border-color: $main_theme_color; position: relative }
 .navbar-static-side{
-	background: $blue_bg;
+	background: $main_theme_color;
 }
 /* menu */
 .fa.arrow.nav-collapse:before { content: "\f105" !important; }
@@ -51,32 +56,64 @@ nav .system-name{
 .nav li{list-style:none;font-family:'Microsoft Yahei';font-size: 14px;}
 .navbar-default .nav>li>a:focus, .navbar-default .nav>li>a:hover {background:0;  }
 .navbar-default .nav .nav-second-level>li>a:focus, .navbar-default .nav .nav-second-level>li>a:hover 
-{ background-color: $lighter_grey_bg;opacity:1; color: $blue_bg; }
-// .navbar-static-side .nav-li-first:hover .nva-div-shadow {
-//     // width: 95px;
-//     // height: 80px;
-//     // position: absolute;
-//     // top: 0;
-//     // left: 0;
-//     background: #fff;
-//     filter: alpha(opacity=50);
-//     -moz-opacity: 0.15;
-//     opacity: 0.15;
-//     filter: progid:DXImageTransform.Microsoft.Alpha(style=0,opacity=15);
-//     cursor: pointer;
-// }
+{ background-color: $lighter_grey_bg;opacity:1; color: $main_theme_color; }
+
+.nav-second-level li a { padding-left: 52px }
+.nav.jxc-style .nav-second-level li a { padding-left: 0 }
 
 
-
+.nav.jxc-style>li>a:hover:after{
+    $border-width: 6px;
+    $bg-color: white;
+    display: block;
+    content: "";
+    background: $bg-color;
+    height: 0;
+    width: 0;
+    position: absolute;
+    top: 50%;
+    margin-top: -$border-width;
+    right: -$border-width;
+    transform: rotate(45deg);
+    border-top: solid $border-width transparent;
+    border-right: solid $border-width transparent;
+    border-left: solid $border-width $bg-color;
+    border-bottom: solid $border-width $bg-color;
+}
+.nav.jxc-style .nav-second-level{
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 100%;
+    background: white;
+    border: 3px solid $darker_grey_bg;border-left:none;
+    width: 100%; min-height:100%;
+}
+.nav.jxc-style .nav-second-level a{color:$menu_grey_font;}
+.nav.jxc-style li>a{text-align: center;}
+.nav.jxc-style li:hover{background: rgba(255, 251, 251, 0.2);}
+.nav.jxc-style>li>a i {
+    margin-right: 6px;margin-bottom: 10px;
+    font-size: 30px;
+    display: block;
+}
+.nav.jxc-style>li>a .arrow{
+    position: absolute;
+    top: 42%;
+    right: 10%;
+    
+}
+.nav.jxc-style .fa.arrow:before { content: "\f054" }
+.nav.jxc-style>li>a:hover .fa.arrow:before { content: "" }
 
 
 
 .page-tabs a.active {
-	background: $blue_bg;
+	background: $main_theme_color;
 
 }
-.content-tabs { border-bottom: solid 2px $blue_bg; }
+.content-tabs { border-bottom: solid 2px $main_theme_color; }
 .page-tabs a { color: #999 }
 .page-tabs a i { color: #ccc }
-.page-tabs a.active { background: $darker_grey_bg; color: $blue_bg; }
-.page-tabs a.active i:hover, .page-tabs a.active:hover { background: $blue_bg; color: white; }
+.page-tabs a.active { background: $darker_grey_bg; color: $main_theme_color; }
+.page-tabs a.active i:hover, .page-tabs a.active:hover { background: $main_theme_color; color: white; }

@@ -17,22 +17,6 @@
     <link href="../../css/style.min.css" rel="stylesheet">
 
     <link href="../../css/index.css" rel="stylesheet">
-    <script type="text/javascript">
-                !function getExplorerInfo() {
-            var explorer = window.navigator.userAgent.toLowerCase();
-            //ie
-            if (explorer.indexOf("msie") >= 0) {
-                var ver = explorer.match(/msie ([\d.]+)/)[1];
-                var verFloat = parseFloat(ver);
-//                alert(verFloat);
-                if (verFloat < 9) {
-                    alert("您当前使用的浏览器为IE" + ver + ",为了让网站更好展示功能，请使用更高版本的浏览器（或其他浏览器）或者使用浏览器的极速模式访问！");
-                    return false;
-                } 
-
-            } 
-        }();
-    </script>
 
 </head>
 <body class="fixed-sidebar full-height-layout gray-bg">
@@ -41,7 +25,7 @@
         <nav class="navbar-default navbar-static-side" role="navigation">
             <div class="sidebar-collapse">
 
-                <ul class="nav jxc-style" id="side-menu">
+                <ul class="nav" id="side-menu">
                     <!--   <li class="nav-header">
                         <div class="dropdown profile-element">
                             <span><img alt="image" class="img-circle" src="img/profile_small.jpg" /></span>
@@ -63,21 +47,21 @@
                     <li class="nav-header">
                         <div class="nav-div-logo">
                             <img src="../../img/logo_red.png">
-                    <!--                             <div style="display: inline-block;">
+                            <div style="display: inline-block;">
                                 <span class="group-name">蜘点集团</span><br/>
-                                <span class="system-name">结算系统</span>
+                                <!-- <span class="system-name">结算系统</span> -->
                                 
-                            </div> -->
+                            </div>
                         </div>
                         
                     </li>
-                    <li style="display: none;">
+                    <li>
                         <a href="#">
                             <i class="fa fa-home"></i>
                             <span class="nav-label">主页</span>
                             <span class="fa arrow"></span>
                         </a>
-                        <ul class="nav nav-second-level" style="display: none;">
+                        <ul class="nav nav-second-level">
                             <li>
                                 <a class="J_menuItem" href="../demo/list.html" data-index="0">列表demo</a>
                                 <!--默认主页需在对应的菜单a元素上添加data-index="0"-->
@@ -90,14 +74,14 @@
                             </li>
                         </ul>
                     </li>
-                    <li style="display: none;">
+                    <li>
                         <!--其他菜单项-->
                         <a href="#">
                             <i class="fa fa-shopping-cart"></i>
                             <span class="nav-label">采购审核</span>
                             <span class="fa arrow"></span>
                         </a>
-                        <ul class="nav nav-second-level" style="display: none;">
+                        <ul class="nav nav-second-level">
                             <li>
                                 <a class="J_menuItem" href="../review/reviewSettlementList.html" data-index="0">待审核结算单</a>
                                 <!--默认主页需在对应的菜单a元素上添加data-index="0"-->
@@ -107,14 +91,14 @@
                             </li>
                         </ul>
                     </li>
-                    <li style="display: none;">
+                    <li>
                         <!--其他菜单项-->
                         <a href="#">
                             <i class="fa fa-file-text"></i>
                             <span class="nav-label">结算审核</span>
                             <span class="fa arrow"></span>
                         </a>
-                        <ul class="nav nav-second-level" style="display: none;">
+                        <ul class="nav nav-second-level">
                             <li>
                                 <a class="J_menuItem" href="../review/reviewSettlementList.html" data-index="0">待审核结算单</a>
                                 <!--默认主页需在对应的菜单a元素上添加data-index="0"-->
@@ -128,46 +112,44 @@
                         <!--其他菜单项-->
                         <a href="#">
                             <i class="fa fa-calculator"></i>
-                            <span class="nav-label">结算管理</span>
+                            <span class="nav-label">商家结算管理</span>
                             <span class="fa arrow"></span>
                         </a>
-                        <ul class="nav nav-second-level" style="display: none;">
-<!--                             <li>
+                        <ul class="nav nav-second-level">
+                            <li>
                                 <a class="J_menuItem" href="../Merchant/merchantSettlementList.html" data-index="0">结算账单</a>
+                                <!--默认主页需在对应的菜单a元素上添加data-index="0"-->
                             </li>
                             <li>
                                 <a class="J_menuItem" href="../Merchant/frozenOrderList.html">冻结订单</a>
                             </li>
                             <li>
                                 <a class="J_menuItem" href="../Merchant/exception.html">异常管理</a>
-                            </li> -->
-                            <li>
-                                <a class="J_menuItem" href="../Merchant/merchantSettlementList2.html" data-index="0">.结算账单.</a>
                             </li>
                         </ul>
                     </li>
-                    <li style="">
+                    <li>
                         <!--其他菜单项-->
                         <a href="#">
                             <i class="fa fa-cubes"></i>
-                            <span class="nav-label">供应商</span>
+                            <span class="nav-label">供应商管理</span>
                             <span class="fa arrow"></span>
                         </a>
-                        <ul class="nav nav-second-level" style="display: none;">
+                        <ul class="nav nav-second-level">
                             <li>
                                 <a class="J_menuItem" href="../review/reviewSettlementList.html" data-index="0">供应商列表</a>
                                 <!--默认主页需在对应的菜单a元素上添加data-index="0"-->
                             </li>
                         </ul>
                     </li>
-                    <li style="display: none;">
+                    <li>
                         <!--其他菜单项-->
                         <a href="#">
                             <i class="fa fa-exclamation-triangle"></i>
-                            <span class="nav-label">预付款</span>
+                            <span class="nav-label">预付款安全预警</span>
                             <span class="fa arrow"></span>
                         </a>
-                        <ul class="nav nav-second-level" style="display: none;">
+                        <ul class="nav nav-second-level">
                             <li>
                                 <a class="J_menuItem" href="../review/reviewSettlementList.html" data-index="0">预付款虚拟充值</a>
                                 <!--默认主页需在对应的菜单a元素上添加data-index="0"-->
@@ -185,7 +167,7 @@
         <div id="page-wrapper" class="gray-bg dashbard-1">
             <div class="row border-bottom">
                 <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
-                    <div><span class="group-name">蜘点集团</span><span class="system-name">结算系统</span></div>
+                    <!-- <div><span>蜘点集团</span><span class="system-name">结算系统</span></div> -->
                 </nav>
             </div>
             <div class="row content-tabs">
@@ -193,7 +175,7 @@
                 </button>
                 <nav class="page-tabs J_menuTabs">
                     <div class="page-tabs-content">
-                        <a href="javascript:;" class="active J_menuTab" href="index_v1.html" data-id="index_v1.html">首页</a>
+                        <a href="javascript:;" class="active J_menuTab" data-id="index_v1.html">首页</a>
                         <!--默认主页需在对应的选项卡a元素上添加data-id="默认主页的url"-->
                     </div>
                 </nav>
@@ -202,7 +184,7 @@
 
             </div>
             <div class="row J_mainContent" id="content-main">
-                <iframe class="J_iframe" name="iframe0" width="100%" height="100%" src="../Merchant/merchantSettlementList2.html" frameborder="0" data-id="../Merchant/merchantSettlementList2.html" seamless></iframe>
+                <iframe class="J_iframe" name="iframe0" width="100%" height="100%" src="index_v1.html" frameborder="0" data-id="index_v1.html" seamless></iframe>
                 <!--默认主页需在对应的页面显示iframe元素上添加name="iframe0"和data-id="默认主页的url"-->
             </div>
 
@@ -224,32 +206,12 @@
     <script src="../../js/plugins/pace/pace.min.js"></script>
     <script type="text/javascript">
     // 一级菜单点击事件
-        // $("#side-menu>li>a").click(function(e){
-        //     var _this = this;
-        //     $(this.nextElementSibling).toggle("fast",function(){
-        //         $(_this).children("span.arrow").toggleClass("nav-collapse")
-        //     })
-        // })
-        $("#side-menu>li").hover(function(e){
+        $("#side-menu>li>a").click(function(e){
             var _this = this;
-            $(_this).children("ul.nav-second-level").toggle("fast",function(){
-                // $(_this).find("span.arrow").toggleClass("show-second-lvl")
+            $(this.nextElementSibling).slideToggle("fast",function(){
+                $(_this).children("span.arrow").toggleClass("nav-collapse")
             })
         })
-        !function getExplorerInfo() {
-            var explorer = window.navigator.userAgent.toLowerCase();
-            //ie
-            if (explorer.indexOf("msie") >= 0) {
-                var ver = explorer.match(/msie ([\d.]+)/)[1];
-                var verFloat = parseFloat(ver);
-//                alert(verFloat);
-                if (verFloat < 9) {
-                    alert("您当前使用的浏览器为IE" + ver + ",为了让网站更好展示功能，请使用更高版本的浏览器（或其他浏览器）或者使用浏览器的极速模式访问！");
-                    return false;
-                } 
-
-            } 
-        }();
     </script>
     
 

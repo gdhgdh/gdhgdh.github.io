@@ -157,7 +157,7 @@
         var row = e.record;
         var id = row.id;
         console.log(row)
-        window.parent.CreateMenuItem("../merchant/merchantSettlementBill.html"+"?id="+id + "&shopId=" + row.shopId,"结算账单详细",false)
+        window.parent.CreateMenuItem("../merchant/merchantSettlementBill2.html"+"?id="+id + "&shopId=" + row.shopId,".结算账单详细.",false)
         // UpdateAllocationFile(id,row.RecordStatus);
     }
     // 单击行------------------------------------------------------------

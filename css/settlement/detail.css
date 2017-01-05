@@ -7,10 +7,7 @@ body {
 }
 
 body.dialog {
-    background: #f2f2f2;
-/*    height: 100%;
-     width: 100%;
-    overflow: hidden;*/
+    background: #f2f2f2;width: 100%;overflow-x: hidden;min-height: 100%;
 }
 /*
 form {
@@ -20,7 +17,6 @@ form {
     margin: 0px;
     padding: 0px;
 }*/
-
 
 a {
   color: #337ab7;
@@ -121,3 +117,11 @@ label {
     outline: 0;
     box-shadow: none;
 }
+/* GDH 2016.12.15---------------*/
+.list-action-cannot{
+  text-decoration:none;color:lightgrey;
+}
+.list-action-can{
+  cursor:pointer;text-decoration:none;
+}
+/* ---------------GDH 2016.12.15*/

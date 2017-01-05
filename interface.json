@@ -1,0 +1,7 @@
+{
+	"url":" http://tututech.f3322.net:9092/api.do?action=menuService.getAll",
+	"url":" http://tututech.f3322.net:9092/api.do?action=settlementService.getSettlementAll"
+
+//http://tututech.f3322.net:9092/api!getToken.do
+	// &jsonString=eyJzeXN0ZW1Tb3VyY2UiOjEsInR5cGUiOjEsInVzZXJJZCI6MSwidG9rZW4iOiIwM2FmMTA3ODllNDc3ZTMwMGZiNTE2YjNmN2JhNDE3YyJ9
+}
