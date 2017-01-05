@@ -1,7 +1,7 @@
 @charset "UTF-8";
-body.canvas-menu .navbar-static-side, body.fixed-sidebar .navbar-static-side { position: fixed; /* width: 200px; when using the original style */ width: 100px; z-index: 2001; height: 100%; }
+body.canvas-menu .navbar-static-side, body.fixed-sidebar .navbar-static-side { position: fixed; width: 100px; z-index: 2001; height: 100%; }
 
-#page-wrapper { padding: 0 15px; position: inherit; /*  margin: 0 0 0 200px  */ margin: 0 0 0 100px; }
+#page-wrapper { padding: 0 15px; position: inherit; margin: 0 0 0 100px; }
 
 .nav-header { background: white; height: 91px; }
 
@@ -52,6 +52,8 @@ body.canvas-menu .navbar-static-side, body.fixed-sidebar .navbar-static-side { p
 .nav.jxc-style li > a { text-align: center; }
 
 .nav.jxc-style li:hover { background: rgba(255, 251, 251, 0.2); }
+
+.nav.jxc-style li.nav-header:hover { background: white; }
 
 .nav.jxc-style > li > a i { margin-right: 6px; margin-bottom: 10px; font-size: 30px; display: block; }
 

@@ -92,6 +92,7 @@ body.canvas-menu .navbar-static-side, body.fixed-sidebar .navbar-static-side {
 .nav.jxc-style .nav-second-level a{color:$menu_grey_font;}
 .nav.jxc-style li>a{text-align: center;}
 .nav.jxc-style li:hover{background: rgba(255, 251, 251, 0.2);}
+.nav.jxc-style li.nav-header:hover{background: white;}
 .nav.jxc-style>li>a i {
     margin-right: 6px;margin-bottom: 10px;
     font-size: 30px;
