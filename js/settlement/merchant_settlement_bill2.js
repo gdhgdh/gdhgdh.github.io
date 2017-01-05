@@ -1,89 +1,47 @@
 ;define(['mock','common'],function (Mock, common) {
-        var grid1data = Mock.mock({
-              "array": [
-              {
-                "name|1": ["供应商1","2222","3333"],
-                "NUMBER|+1": /[1-9](\d){16}/,
-                "StorageName1|1": ["劲沃牌柴油车专用全合成润滑油4L装", "Java编程思想（第4版） [thinking in java]", "Spring实战（第4版）", "西部数据（WD） Elements 新元素系列 2.5英寸", "东芝（TOSHIBA）新黑甲虫系列 2TB", "东芝（TOSHIBA）新北极熊系列", "星期六（ST&SAT)黑色牛皮细跟尖头单鞋SS5311506210", "阿迪达斯男鞋2016新款运动鞋", "保时捷轮胎", "迪士尼汽车用品头枕一对", "绿帝新货建宁莲子无芯通芯白莲去芯干货土特产"], //Mock.Random.ctitle(10, 15),
-                 "IsOutStorage|1": ["广州仁浩商贸有限公司", "东莞市银石礼品制造有限公司", "景德镇秋虎陶瓷有限公司", "上海乾瓷祥贸易有限公司", "广州市天录雪工艺品有限公司", "广州腾洪工艺品有限公司", "上海锦途广告制作有限公司"],
-                 "amount|100-999.2-2": 100.20,
-                 "amount1|100-999.2-2": 100.20,
-                 "amount2|100-999.2-2": 100.20,
-                 "amount3|100-999.2-2": 100.20,
-                 "RecordStatusName|1-99": 10,
-                 "invdate": function (){
-                   return Mock.Random.datetime()
-                 }
-              }
-              ]
-        }).array; 
-
-        var grid2data = Mock.mock({
-              "array|15": [
-              {
-                "no|+1":/[1-9](\d){6}/,
-                "name|+1": ["供应商1","2222","3333"],
-                "StockAllotNo|+1": /[1-9](\d){16}/,
-                "StorageName1|+1": ["劲沃牌柴油车专用全合成润滑油4L装", "Java编程思想（第4版） [thinking in java]", "Spring实战（第4版）", "西部数据（WD） Elements 新元素系列 2.5英寸", "东芝（TOSHIBA）新黑甲虫系列 2TB", "东芝（TOSHIBA）新北极熊系列", "星期六（ST&SAT)黑色牛皮细跟尖头单鞋SS5311506210", "阿迪达斯男鞋2016新款运动鞋", "保时捷轮胎", "迪士尼汽车用品头枕一对", "绿帝新货建宁莲子无芯通芯白莲去芯干货土特产"], //Mock.Random.ctitle(10, 15),
-                 "IsOutStorage|1": ["广州仁浩商贸有限公司", "东莞市银石礼品制造有限公司", "景德镇秋虎陶瓷有限公司", "上海乾瓷祥贸易有限公司", "广州市天录雪工艺品有限公司", "广州腾洪工艺品有限公司", "上海锦途广告制作有限公司"],
-                 "amount|100-999.2-2": 100.20,
-                 "total|1000-9999.2-2": 1000,
-                 "workstock|1-99": 10,
-                 "freeze|1-99": 10,
-                 "invdate": function (){
-                   return Mock.Random.datetime()
-                 }
-              }
-              ]
-        }).array; 
-        var grid3data = Mock.mock({
-              "array|3": [
-              {
-
-                "name|1": ["劲沃牌柴油车专用全合成润滑油4L装", "Java编程思想（第4版） [thinking in java]", "Spring实战（第4版）", "西部数据（WD） Elements 新元素系列 2.5英寸", "东芝（TOSHIBA）新黑甲虫系列 2TB", "东芝（TOSHIBA）新北极熊系列", "星期六（ST&SAT)黑色牛皮细跟尖头单鞋SS5311506210", "阿迪达斯男鞋2016新款运动鞋", "保时捷轮胎", "迪士尼汽车用品头枕一对", "绿帝新货建宁莲子无芯通芯白莲去芯干货土特产"], //Mock.Random.ctitle(10, 15),
-                 "text|1": ["广州仁浩商贸有限公司", "东莞市银石礼品制造有限公司", "景德镇秋虎陶瓷有限公司", "上海乾瓷祥贸易有限公司", "广州市天录雪工艺品有限公司", "广州腾洪工艺品有限公司", "上海锦途广告制作有限公司"],
-                 "remark|1-99": 10,
-                 "VerifiedOn": function (){
-                   return Mock.Random.datetime()
-                 }
-              }
-              ]
-        }).array; 
     $(document).ready(function () {
 
-      var w=$("body").width();
-      $("body").css({width:w+"px"});
-      // w--;
-      //   $("body").css({width:w+"px"});
+        var w=$("body").width();
+        $("body").css({width:w+"px"});
 
-
-    	mini.parse();
+    	  mini.parse();
         var grid1 = mini.get("datagrid1");
-        // grid1.setData(grid1data);
         var grid2 = mini.get("datagrid2");
-        // grid2.setData(grid2data);
         var grid3 = mini.get("datagrid3");
-        // grid3.setData(grid3data);
-    	// mini.parse();
         var form = new mini.Form("form1");
-            
-        $.post("http://tututech.f3322.net:9092/api.do?action=settlementService.getById",{id:common.getQueryString("id"),shopId:common.getQueryString("shopId")},function(result){
-            console.log(result)
-            if (result.isSuccess) {
-                var data = result.data;
-                var wholesaleShop = data.wholesaleShop;
-                var listOrder = data.listOrder;
-                var listVerify = data.listVerify;
-                form.setData(wholesaleShop);
-                var data1 = [data.settlement]
-                grid1.setData(data1);
-                grid2.setData(listOrder);
 
-                // grid3.setData(listVerify);
+        function loadData(orderListPageIndex, SearchStartTime, SearchEndTime){
+
+            $.post("http://tututech.f3322.net:9092/api.do?action=settlementService.getById",{
+              shopId:common.getQueryString("shopId"),
+               pageIndex:orderListPageIndex,
+               pageSize:grid2.pageSize,
+               SearchStartTime:SearchStartTime || "",
+               SearchEndTime: SearchEndTime || ""
+              },function(result){
+                console.log(result)
+                if (result.isSuccess) {
+                    // var data = result.data;
+                    var info = result.info;
+                    var data = result.data;
+                    var listVerify = result.listVerify;
+                    form.setData(info);
+                    // var data1 = [result.settlement]
+                    // grid1.setData(data1);
+                    /*                grid2.setData(data);   // 订单明细列表
+                                    grid2.setTotalCount(result.total);
+                                    grid2.setPageIndex(result.page.PageIndex);
+                                    grid2.setPageSize(result.page.PageSize);*/
+
+                    fillData(result.page.PageIndex, result.page.PageSize, result.total, data, grid2);
+
+                    // grid3.setData(listVerify);
 
 
-            }
-        },'json');
+                }
+            },'json');
+        }
+        loadData(0);       // 首次加载
         //单元格绘制-----------------------------------------
         grid2.on("drawcell", function (e) {
             var record = e.record,
@@ -112,7 +70,31 @@
                 console.log(this)
             });
         });
+        //  订单列表分页事件
+        grid2.on("beforeload",function(e){
+             e.cancel = true;
+             console.log("分页前事件")
+             console.log(e)
+             loadData(e.data.pageIndex);
+        });
 
+        function fillData(pageIndex, pageSize,totalCount, dataArray, grid){
+            grid.setData(dataArray);   // 订单明细列表
+            grid.setTotalCount(totalCount);
+            grid.setPageIndex(pageIndex);
+            grid.setPageSize(pageSize);
+        }
+        // 日期检索
+        $("#btnSearch").bind("click", function () {
+            // var key = mini.get("key").getValue();
+            var SearchStartTime = mini.get("SearchStartTime").getFormValue();
+            if( SearchStartTime !=""){SearchStartTime += " 00:00:00.000";} 
+            var SearchEndTime = mini.get("SearchEndTime").getFormValue();
+            if(SearchEndTime != ""){SearchEndTime += " 23:59:59.999"}
+            loadData(0, SearchStartTime, SearchEndTime);
+
+
+        });
 
         // 批量冻结
         $("#onBatchFreeze").bind("click",function(){

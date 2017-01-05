@@ -62,13 +62,11 @@
                                          url="" idfield="id" sortField="CreatedOn" sortOrder="desc" multiselect="false" onrowdblclick="onRowDblClick"
                                          allowcellwrap="true">
                                         <div property="columns">
-                                            <!-- <div name="action" width="60" headeralign="center" align="center">操作</div> -->
-                                            <div field="settlementCode" width="100" headeralign="center" align="left" allowsort="true">结算单号</div>
-                                            <div field="settlementAmount" width="120" headeralign="center" allowsort="true">本期实付金额</div>
-                                            <div field="orginalAmount" width="100" headeralign="center" align="center" allowsort="true">本期应付金额</div>
+                                            <div field="settlementCode" width="100" headeralign="center" align="left">结算单号</div>
+                                            <div field="settlementAmount" width="120" headeralign="center">本期实付金额</div>
+                                            <div field="orginalAmount" width="100" headeralign="center" align="center">本期应付金额</div>
                                             <div header="本期扣项" headeralign="center" width="">
                                                 <div property="columns">
-                                                    <!-- <div field="" width="120" headeralign="center">现金</div> -->
                                                     <div field="deduct" width="100" headeralign="center">账扣</div>
                                                     <div field="advance" width="100" headeralign="center">本期预付款金额</div>
                                                     
@@ -80,7 +78,7 @@
                                                     <div field="invoiceTax" width="100" headeralign="center">应开票税额</div>
                                                 </div>
                                             </div>
-                                            <div field="status" width="80" headeralign="center" align="center" allowsort="true">状态</div>
+                                            <div field="status" width="80" headeralign="center" align="center">状态</div>
 
                                         </div>
                                     </div>
@@ -120,7 +118,7 @@
                                 </div>
                                 <div class="clearfloat" style="height: 2px;"></div>
 
-                                <div id="datagrid2" class="mini-datagrid" style="width:100%;" borderstyle="border-bottom:0;" allowresize="false" allowalternating="false" pagesize="5000" sizelist="[30,50,100,5000]" showReloadButton="false" showPager="false"
+                                <div id="datagrid2" class="mini-datagrid" style="width:100%;" borderstyle="border-bottom:0;" allowresize="false" allowalternating="false" pagesize="5" sizelist="[30,50,100,5000]" showReloadButton="false" showPager="true"
                                      url="" idfield="orderId" sortField="addDate" sortOrder="desc" multiselect="true" onrowdblclick="" 
                                      allowcellwrap="true" allowCellEdit="true" allowCellSelect="true" >
                                     <div property="columns">
@@ -131,51 +129,53 @@
                                             <!--   <div field="businesslicensecomname" width="100" headeralign="center" align="center">供应商名称</div>
                                         <div field="businesslicenseno" width="100" headeralign="center" align="center">供应商编码</div> -->
                                         <!-- 与上面表单重复，先隐藏 -->
-                                        <div field="" width="100" headeralign="center" align="center">一级分类</div>
-                                        <div field="f1" width="100" headeralign="center" align="center">二级分类</div>
-                                        <div field="f2" width="100" headeralign="center" align="center">三级分类</div>
+                                        <div field="categoryNo1" width="100" headeralign="center" align="center">一级分类</div>
+                                        <div field="categoryNo2" width="100" headeralign="center" align="center">二级分类</div>
+                                        <div field="categoryNo3" width="100" headeralign="center" align="center">三级分类</div>
                                         <div field="productName" width="100" headeralign="center" align="center">商品名称</div>
                                         <div field="productCode" width="100" headeralign="center" align="center">商品编码</div>
-                                        <div field="f5" width="100" headeralign="center" align="center">SKU编码</div>
-                                        <div field="f6" width="100" headeralign="center" align="center">货号</div>
+                                        <div field="skuCode" width="100" headeralign="center" align="center">SKU编码</div>
+                                        <!-- <div field="f6" width="100" headeralign="center" align="center">货号</div> -->
                                         <div field="skuDesc" width="100" headeralign="center" align="center">型号规格</div>
-                                        <div field="f8" width="100" headeralign="center" align="center">供货价</div>
+                                        <div field="originalPrice" width="100" headeralign="center" align="center">供货单价(￥)</div>
                                         <div field="qty" width="100" headeralign="center" align="center">销售数量</div>
-                                        <div field="taxMoney" width="100" headeralign="center" align="center">税金</div>
+                                        <div field="money" width="100" headeralign="center" align="center">金额</div>
                                         <div field="orginalAmount" width="100" headeralign="center" align="center">订单总金额</div>
                                         <!-- 是哪个字段尚不明确 -->
-                                        <div field="settlementAmount" width="100" headeralign="center" align="center">应结算金额</div>
-                                        <div field="f13" width="100" headeralign="center" align="center">下单时间</div>
-                                        <div field="f14" width="100" headeralign="center" align="center">发货时间</div>
-                                        <div field="f15" width="100" headeralign="center" align="center">签收时间</div>
+                                        <!-- <div field="settlementAmount" width="100" headeralign="center" align="center">应结算金额</div> -->
+                                        <div field="createDate" width="100" headeralign="center" align="center" dateformat="yyyy-MM-dd">下单时间</div>
+                                        <div field="deliverDate" width="100" headeralign="center" align="center" dateformat="yyyy-MM-dd">发货时间</div>
+                                        <div field="finishDate" width="100" headeralign="center" align="center" dateformat="yyyy-MM-dd">签收时间</div>
                                         <div field="orderStatus" width="100" headeralign="center" align="center">订单状态</div>
                                         <!-- 0：待付款50：已付款 100：待收货 150：确认收货 200：取消 250：关闭交易 -->
-                                        <div field="f17" width="100" headeralign="center" align="center">支付流水号</div>
+                                        <div field="payNo" width="100" headeralign="center" align="center">支付流水号</div>
                                         <div field="f19" width="100" headeralign="center" align="center">是否有退款</div>
                                         <div field="f20" width="100" headeralign="center" align="center">退货数量</div>
                                         <div field="f21" width="100" headeralign="center" align="center">退货金额</div>
                                         <div field="cooperateType" width="100" headeralign="center" align="center">合作方式</div>
                                         <!-- 0:分销代发 -->
-                                        <div field="VerifiedOn" width="120" headeralign="center" align="center" dateformat="yyyy-MM-dd HH:mm" allowsort="true">状态</div>
-                                        <div field="blockedReason" width="80" headeralign="center" align="center" allowsort="true">备注
+                                        <!-- <div field="" width="120" headeralign="center" align="center">状态</div> -->
+                                        <div field="preSettlementDate" width="120" headeralign="center" align="center" dateformat="yyyy-MM-dd">应结算日期</div>
+                                        <div field="" width="120" headeralign="center" align="center" dateformat="yyyy-MM-dd">实际结算日期</div>
+                                        <div field="blockedReason" width="80" headeralign="center" align="center">备注
                                                 <input property="editor" class="mini-textbox" />
                                         </div>
 
                                     </div>
                                 </div>
                             </div>
-<!-- 
-                            <h4>审核记录</h4>
+
+<!--                             <h4>审核记录</h4>
                             <div>
-                                <div id="datagrid3" class="mini-datagrid" style="width: 100%; "  allowresize="false" showPager="false"
+                                <div id="datagrid3" class="mini-datagrid" style="width: 100%;"  allowresize="false" showPager="false"
                                     emptyText="暂无记录" showEmptyText="true"
                                      url="" allowcellwrap="true" showColumns="true" showHGridLines="false" showVGridLines="false">
                                     <div property="columns">
-                                        <div field="verifyDate" width="80" headeralign="center" align="center" dateformat="yyyy-MM-dd HH:mm" allowsort="true">操作时间</div>
-                                        <div field="verifyUserDepartment" width="100" headeralign="center" align="left" allowsort="true">操作人部门</div>
-                                        <div field="verifyUserName" width="100" headeralign="center" align="left" allowsort="true">操作人</div>
-                                        <div field="verifyStatus" desc="0:审核不通过 1:审核通过" width="200" headeralign="center" align="left" allowsort="true">内容</div>
-                                        <div field="verifyOpinion" width="80" headeralign="center" align="center" allowsort="true">备注</div>
+                                        <div field="verifyDate" width="80" headeralign="center" align="center" dateformat="yyyy-MM-dd HH:mm">操作时间</div>
+                                        <div field="verifyUserDepartment" width="100" headeralign="center" align="left">操作人部门</div>
+                                        <div field="verifyUserName" width="100" headeralign="center" align="left">操作人</div>
+                                        <div field="verifyStatus" desc="0:审核不通过 1:审核通过" width="200" headeralign="center" align="left">内容</div>
+                                        <div field="verifyOpinion" width="80" headeralign="center" align="center">备注</div>
 
                                     </div>
                                 </div>
