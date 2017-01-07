@@ -135,7 +135,7 @@
         });
         // 导出
         $(".onExport").bind("click",function(){
-            mini.alert("等待导出接口！");
+            // mini.alert("等待导出接口！");
             var SearchStartTime = mini.get("SearchStartTime").getFormValue();
             if( SearchStartTime !=""){SearchStartTime += " 00:00:00.000";} 
             var SearchEndTime = mini.get("SearchEndTime").getFormValue();
