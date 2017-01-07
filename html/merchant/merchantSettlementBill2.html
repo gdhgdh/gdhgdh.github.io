@@ -28,14 +28,14 @@
                 <input name="id" class="mini-hidden" value="" />
 
                 <!--板块02-->
-                <div class="" style="">
+                <div class="use-fixed-toolbar" style="">
                     <!--工具条-->
                     <div class="mini-toolbar dvDetailBar" style="border: 0;border-bottom: solid 1px #ddd;">
                         <h4 class="text-center">结算单明细</h4>
-                        <div class="" style="position:absolute;right:0;top:10px;">
-                            <a class="mini-button" iconcls="icon-save" plain="true" id="onSave">提交结算</a>
+                        <div class="" style="position:absolute;right:10px;top:10px;">
+                            <a class="mini-button onSave" iconcls="icon-save" plain="true" >提交结算</a>
 
-<!--                             <a class="mini-button editselect" iconcls="icon-save" id="onSave" onclick="onSave" plain="true">保存</a>
+                <!--    <a class="mini-button editselect" iconcls="icon-save" id="onSave" onclick="onSave" plain="true">保存</a>
                             <a class="mini-button" iconcls="icon-print" plain="true" id="onPrint" onclick="printBill()">打印</a>
                             <a class="mini-button" iconcls="icon-next" onclick="" plain="true">退出</a> -->
                             
@@ -98,7 +98,7 @@
                                 <div class="mini-toolbar" data-role="toolbar" style="margin: 0px; padding-left:20px; border-width: 0;vertical-align:middle;line-height:34px;height: 40px">
                                     
                                     <div style="text-align: left; border-top-width: 0; border-right-width: 0;float:left;">
-                                    <label>应结算日期</label>
+                                    <label>订单完成日期</label>
                                         <input id="SearchStartTime" class="mini-datepicker" style="width:110px; " format="yyyy-MM-dd" showtime="false" allowInput="false" emptyText="开始日期" />
 
                                         <span>至</span>
@@ -112,14 +112,14 @@
 
                                     </div>
                                     <div style="text-align: right; border-top-width: 0; border-right-width: 0;float:right;">
-                                        <a class="mini-button" iconcls="icon-daoru" plain="true" id="onExport">导出明细</a>
+                                        <a class="mini-button onExport" iconcls="icon-daoru" plain="true" >导出明细</a>
 
                                     </div>
                                 </div>
                                 <div class="clearfloat" style="height: 2px;"></div>
 
-                                <div id="datagrid2" class="mini-datagrid" style="width:100%;" borderstyle="border-bottom:0;" allowresize="false" allowalternating="false" pagesize="5" sizelist="[30,50,100,5000]" showReloadButton="false" showPager="true"
-                                     url="" idfield="orderId" sortField="addDate" sortOrder="desc" multiselect="true" onrowdblclick="" 
+                                <div id="datagrid2" class="mini-datagrid" style="width:100%;" borderstyle="border-bottom:0;" allowresize="false" allowalternating="false" pagesize="50" sizelist="[30,50,100,5000]" showReloadButton="false" showPager="true"
+                                      idfield="orderId" sortField="addDate" sortOrder="desc" multiselect="true" frozenStartColumn=0 frozenEndColumn=1
                                      allowcellwrap="true" allowCellEdit="true" allowCellSelect="true" >
                                     <div property="columns">
                                         <!-- <div type="checkColumn"></div> -->
@@ -129,34 +129,35 @@
                                             <!--   <div field="businesslicensecomname" width="100" headeralign="center" align="center">供应商名称</div>
                                         <div field="businesslicenseno" width="100" headeralign="center" align="center">供应商编码</div> -->
                                         <!-- 与上面表单重复，先隐藏 -->
-                                        <div field="categoryNo1" width="100" headeralign="center" align="center">一级分类</div>
-                                        <div field="categoryNo2" width="100" headeralign="center" align="center">二级分类</div>
+                                        <div field="categoryNo1" width="80" headeralign="center" align="center">一级分类</div>
+                                        <div field="categoryNo2" width="80" headeralign="center" align="center">二级分类</div>
                                         <div field="categoryNo3" width="100" headeralign="center" align="center">三级分类</div>
-                                        <div field="productName" width="100" headeralign="center" align="center">商品名称</div>
+                                        <div field="productName" width="200" headeralign="center" align="center">商品名称</div>
                                         <div field="productCode" width="100" headeralign="center" align="center">商品编码</div>
                                         <div field="skuCode" width="100" headeralign="center" align="center">SKU编码</div>
                                         <!-- <div field="f6" width="100" headeralign="center" align="center">货号</div> -->
                                         <div field="skuDesc" width="100" headeralign="center" align="center">型号规格</div>
-                                        <div field="originalPrice" width="100" headeralign="center" align="center">供货单价(￥)</div>
-                                        <div field="qty" width="100" headeralign="center" align="center">销售数量</div>
-                                        <div field="money" width="100" headeralign="center" align="center">金额</div>
-                                        <div field="orginalAmount" width="100" headeralign="center" align="center">订单总金额</div>
+                                        <div field="originalPrice" width="80" headeralign="center" align="center">供货单价(￥)</div>
+                                        <div field="qty" width="80" headeralign="center" dataType="int" decimalPlaces="0" align="center">销售数量</div>
+                                        <div field="money" width="80" headeralign="center" align="center">金额</div>
+                                        <div field="orginalAmount" width="80" headeralign="center" align="center">订单总金额</div>
                                         <!-- 是哪个字段尚不明确 -->
                                         <!-- <div field="settlementAmount" width="100" headeralign="center" align="center">应结算金额</div> -->
-                                        <div field="createDate" width="100" headeralign="center" align="center" dateformat="yyyy-MM-dd">下单时间</div>
-                                        <div field="deliverDate" width="100" headeralign="center" align="center" dateformat="yyyy-MM-dd">发货时间</div>
-                                        <div field="finishDate" width="100" headeralign="center" align="center" dateformat="yyyy-MM-dd">签收时间</div>
-                                        <div field="orderStatus" width="100" headeralign="center" align="center">订单状态</div>
+                                        <div field="createDate" width="100" headeralign="center" align="center" dataType="date" dateFormat="yyyy-MM-dd">下单时间</div>
+                                        <div field="deliverDate" width="100" headeralign="center" align="center" dataType="date" dateFormat="yyyy-MM-dd">发货时间</div>
+                                        <div field="finishDate" width="100" headeralign="center" align="center" dataType="date" dateFormat="yyyy-MM-dd">签收时间</div>
+                                        <div field="orderStatus" width="100" headeralign="center" align="center" 
+                                            dataType="enum" dataDesc='{"0"："待付款","50"："已付款", "100"："待收货", "150"："确认收货", "200"："取消", "250"："关闭交易"}'>订单状态</div>
                                         <!-- 0：待付款50：已付款 100：待收货 150：确认收货 200：取消 250：关闭交易 -->
-                                        <div field="payNo" width="100" headeralign="center" align="center">支付流水号</div>
-                                        <div field="f19" width="100" headeralign="center" align="center">是否有退款</div>
-                                        <div field="f20" width="100" headeralign="center" align="center">退货数量</div>
-                                        <div field="f21" width="100" headeralign="center" align="center">退货金额</div>
-                                        <div field="cooperateType" width="100" headeralign="center" align="center">合作方式</div>
+                                        <div field="payNo" width="150" headeralign="center" align="center">支付流水号</div>
+                                        <div field="isRefund" width="80" headeralign="center" align="center" dataType="enum">是否有退款</div>
+                                        <div field="refundQty" width="80" headeralign="center" align="center">退货数量</div>
+                                        <div field="refundAmount" width="80" headeralign="center" align="center">退货金额</div>
+                                        <!-- <div field="cooperateType" width="100" headeralign="center" align="center">合作方式</div> -->
                                         <!-- 0:分销代发 -->
                                         <!-- <div field="" width="120" headeralign="center" align="center">状态</div> -->
-                                        <div field="preSettlementDate" width="120" headeralign="center" align="center" dateformat="yyyy-MM-dd">应结算日期</div>
-                                        <div field="" width="120" headeralign="center" align="center" dateformat="yyyy-MM-dd">实际结算日期</div>
+                                        <div field="preSettlementDate" width="100" headeralign="center" align="center" dataType="date" dateFormat="yyyy-MM-dd">应结算日期</div>
+                                        <div field="" width="100" headeralign="center" align="center" dataType="date" dateFormat="yyyy-MM-dd">实际结算日期</div>
                                         <div field="blockedReason" width="80" headeralign="center" align="center">备注
                                                 <input property="editor" class="mini-textbox" />
                                         </div>
@@ -165,7 +166,7 @@
                                 </div>
                             </div>
 
-<!--                             <h4>审核记录</h4>
+                            <!--    <h4>审核记录</h4>
                             <div>
                                 <div id="datagrid3" class="mini-datagrid" style="width: 100%;"  allowresize="false" showPager="false"
                                     emptyText="暂无记录" showEmptyText="true"
@@ -187,12 +188,20 @@
             </form>
         <!-- </div> -->
     </div>
+    <div class="fixed-tools">
+        <a class="onSave" title="提交结算"><i class="fa fa-jpy" aria-hidden="true"></i></a>
+        <a class="onExport" title="导出excel"><span>导出excel</span><i class="fa fa-download" aria-hidden="true"></i></a>
+        <a class="uptotop" href="#" title="回到顶部"><i class="fa fa-chevron-circle-up" aria-hidden="true"></i></a>
+    </div>
 
     <script data-main="../../js/main" src="../../js/require.min.js"></script>
     <script src="../../js/main.js"></script>
 
     <script type="text/javascript">
-        require(["merchant_st_bill2"]);
+        require(["merchant_st_bill2"],function(){
+
+            
+        });
 
     </script>
 </body>

@@ -3,7 +3,7 @@ body.canvas-menu .navbar-static-side, body.fixed-sidebar .navbar-static-side { p
 
 #page-wrapper { padding: 0 15px; position: inherit; margin: 0 0 0 100px; }
 
-.nav-header { background: white; height: 91px; }
+.nav-header { background: white; height: 91px; margin-bottom: 20px; }
 
 .nav-div-logo { text-align: center; height: 100%; padding: 5px; }
 
@@ -45,7 +45,7 @@ body.canvas-menu .navbar-static-side, body.fixed-sidebar .navbar-static-side { p
 
 .nav.jxc-style > li > a:hover:after { display: block; content: ""; background: white; height: 0; width: 0; position: absolute; top: 50%; margin-top: -6px; right: -6px; transform: rotate(45deg); border-top: solid 6px transparent; border-right: solid 6px transparent; border-left: solid 6px white; border-bottom: solid 6px white; }
 
-.nav.jxc-style .nav-second-level { display: block; position: absolute; top: 0; left: 100%; background: white; border: 3px solid #eee; border-left: none; width: 100%; min-height: 100%; }
+.nav.jxc-style .nav-second-level { display: block; position: absolute; top: 0; left: 100%; background: white; border: 3px solid #bbbbbb; border-left: none; width: 100%; min-height: 100%; }
 
 .nav.jxc-style .nav-second-level a { color: #777; }
 

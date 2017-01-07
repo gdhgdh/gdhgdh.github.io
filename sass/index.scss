@@ -10,7 +10,7 @@ body.canvas-menu .navbar-static-side, body.fixed-sidebar .navbar-static-side {
 }
 
 .nav-header {
-	background: white;height: 91px;
+	background: white;height: 91px;margin-bottom: 20px;
  }
 
 .nav-div-logo{
@@ -86,7 +86,7 @@ body.canvas-menu .navbar-static-side, body.fixed-sidebar .navbar-static-side {
     top: 0;
     left: 100%;
     background: white;
-    border: 3px solid $darker_grey_bg;border-left:none;
+    border: 3px solid darken($darker_grey_bg,20%);border-left:none;
     width: 100%; min-height:100%;
 }
 .nav.jxc-style .nav-second-level a{color:$menu_grey_font;}

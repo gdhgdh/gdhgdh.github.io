@@ -125,3 +125,12 @@ label {
   cursor:pointer;text-decoration:none;
 }
 /* ---------------GDH 2016.12.15*/
+.fixed-tools{position: fixed;right: 20px;bottom: 80px;}
+.fixed-tools a{color:#398dee;opacity: 0.3;display: block;text-align: center;}
+.fixed-tools a:hover{opacity: 0.9;cursor: pointer;}
+.fixed-tools a span{display: none;}
+.fixed-tools a:hover:span{display: inline;}
+.fixed-tools a i{font-size: 40px;}
+
+.use-fixed-toolbar>.mini-toolbar{position: fixed;width: 100%;top: 0;z-index: 999;}
+.use-fixed-toolbar>.mini-toolbar + div{margin-top: 48px;}
