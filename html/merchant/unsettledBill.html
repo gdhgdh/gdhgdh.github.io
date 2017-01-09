@@ -147,7 +147,7 @@
                                         <div field="deliverDate" width="100" headeralign="center" align="center" dataType="date" dateFormat="yyyy-MM-dd">发货时间</div>
                                         <div field="finishDate" width="100" headeralign="center" align="center" dataType="date" dateFormat="yyyy-MM-dd">签收时间</div>
                                         <div field="orderStatus" width="100" headeralign="center" align="center" 
-                                            dataType="enum" dataDesc='{"0"："待付款","50"："已付款", "100"："待收货", "150"："确认收货", "200"："取消", "250"："关闭交易"}'>订单状态</div>
+                                           dataDesc='{"0"："待付款","50"："已付款", "100"："待收货", "150"："确认收货", "200"："取消", "250"："关闭交易"}'>订单状态</div>
                                         <!-- 0：待付款50：已付款 100：待收货 150：确认收货 200：取消 250：关闭交易 -->
                                         <div field="payNo" width="150" headeralign="center" align="center">支付流水号</div>
                                         <div field="isRefund" width="80" headeralign="center" align="center" dataType="enum">是否有退款</div>
@@ -189,8 +189,8 @@
         <!-- </div> -->
     </div>
     <div class="fixed-tools">
-        <a class="onSave" title="提交结算"><i class="fa fa-jpy" aria-hidden="true"></i></a>
-        <a class="onExport" title="导出excel"><span>导出excel</span><i class="fa fa-download" aria-hidden="true"></i></a>
+        <a class="onSave bg-red" title="">结算</a>
+        <a class="onExport bg-green" title="导出excel"><span>导出</span></a>
         <a class="uptotop" href="#" title="回到顶部"><i class="fa fa-chevron-circle-up" aria-hidden="true"></i></a>
     </div>
 
@@ -198,7 +198,7 @@
     <script src="../../js/main.js"></script>
 
     <script type="text/javascript">
-        require(["merchant_st_bill2"],function(){
+        require(["merchant_ust_bill"],function(){
 
             
         });

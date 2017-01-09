@@ -147,8 +147,10 @@
                  SearchStartTime:SearchStartTime || "",
                  SearchEndTime: SearchEndTime || ""
                 },function(result){
-
-                });
+                    if (result.isSuccess) {
+                        window.open(result.data)
+                    }
+                },"json");
         });
         // 提交结算
         $(".onSave").bind("click",function(){

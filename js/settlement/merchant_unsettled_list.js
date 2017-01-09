@@ -45,11 +45,11 @@
             // var endtime = mini.get("SearchEndTime").getFormValue();
             // if(endtime != ""){endtime += " 23:59:59.999"}
             // grid.load({ key: key, StartTime: starttime, EndTime: endtime });
-            var settlementCode = mini.get("settlementCode").getValue();
+            // var settlementCode = mini.get("settlementCode").getValue();
             var businesslicensecomname = mini.get("businesslicensecomname").getValue();
             var businesslicenseno = mini.get("businesslicenseno").getValue();
             grid.load({
-                settlementCode :settlementCode,
+                // settlementCode :settlementCode,
                 businesslicensecomname: businesslicensecomname,
                 businesslicenseno: businesslicenseno
             })
@@ -157,7 +157,7 @@
         var row = e.record;
         var id = row.id;
         console.log(row)
-        window.parent.CreateMenuItem("../merchant/merchantSettlementBill2.html"+"?id="+id + "&shopId=" + row.shopId,".结算账单详细.",false)
+        window.parent.CreateMenuItem("../merchant/unsettledBill.html"+"?id="+id + "&shopId=" + row.shopId,".结算账单详细.",false)
         // UpdateAllocationFile(id,row.RecordStatus);
     }
     // 单击行------------------------------------------------------------

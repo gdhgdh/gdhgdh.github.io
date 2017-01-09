@@ -59,7 +59,7 @@ body.canvas-menu .navbar-static-side, body.fixed-sidebar .navbar-static-side {
 { background-color: $lighter_grey_bg;opacity:1; color: $main_theme_color; }
 
 .nav-second-level li a { padding-left: 52px }
-.nav.jxc-style .nav-second-level li a { padding-left: 0 }
+.nav.jxc-style .nav-second-level li a { padding-left: 0; font-size: 12px; }
 
 
 .nav.jxc-style>li>a:hover:after{

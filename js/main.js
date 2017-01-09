@@ -26,8 +26,8 @@ require.config({
         'test' : 'util/test',
         'merchant_st_list' : 'settlement/merchant_settlement_list',
         'merchant_st_bill' : 'settlement/merchant_settlement_bill',
-        'merchant_st_list2' : 'settlement/merchant_settlement_list2',   // 临时功能
-        'merchant_st_bill2' : 'settlement/merchant_settlement_bill2',
+        'merchant_ust_list' : 'settlement/merchant_unsettled_list',   // 未结算列表
+        'merchant_ust_bill' : 'settlement/merchant_unsettled_bill',    // 未结算详情
         //插件
         // 'swiper' : 'util/swiper.min',
         // 'skuModule' : 'util/skuModule',
